@@ -89,13 +89,13 @@ var t = window.setInterval(function () {
 
 
                 let restanteDescansoLargoMin = (duracionDescansoLargo - tiempo) / 60;
-                restanteDescansoLargoMin = restanteDescansoLargoMin < 10 ? "0"+ Math.round(restanteDescansoLargoMin) : Math.round(restanteDescansoLargoMin)
+                restanteDescansoLargoMin < 10 ?  restanteDescansoLargoMin = "0" + Math.round(restanteDescansoLargoMin) : restanteDescansoLargoMin = Math.round(restanteDescansoLargoMin);
 
-                let restanteDescansoLargoSec =(duracionDescansoLargo - tiempo) % 60;
-                restanteDescansoLargoSec = restanteDescansoLargoSec < 10 ? "0" +restanteDescansoLargoSec : restanteDescansoLargoSec
+                let restanteDescansoLargoSec = (duracionDescansoLargo - tiempo) % 60;
+                restanteDescansoLargoSec < 10 ? restanteDescansoLargoSec = "0" + restanteDescansoLargoSec : restanteDescansoLargoSec = restanteDescansoLargoSec;
 
                 pomodoroReloj.textContent = restanteDescansoLargoMin + " : " + restanteDescansoLargoSec;
-                
+
                 pomodoroEstado.textContent = "¡Descanso largo!";
 
                 // Si ha acabado el tiempo del descanso largo reseteamos el tiempo
@@ -114,13 +114,14 @@ var t = window.setInterval(function () {
                 pomodoroEstado.textContent = "¡Descanso corto!";
 
                 let restanteDescansoCotoMin = (duracionDescanso - tiempo) / 60;
-                restanteDescansoCotoMin = restanteDescansoCotoMin < 10 ? "0"+ Math.round(restanteDescansoCotoMin) : Math.round(restanteDescansoCotoMin)
+                restanteDescansoCotoMin < 60 ? restanteDescansoCotoMin = 0 : "";
+                restanteDescansoCotoMin < 10 ? restanteDescansoCotoMin = "0" + Math.floor(restanteDescansoCotoMin) : restanteDescansoCotoMin = Math.floor(restanteDescansoCotoMin)
 
-                let restanteDescansoCotoSec =(duracionDescanso - tiempo) % 60;
-                restanteDescansoCotoSec = restanteDescansoCotoSec < 10 ? "0" +restanteDescansoCotoSec : restanteDescansoCotoSec
+                let restanteDescansoCotoSec = (duracionDescanso - tiempo) % 60;
+                 restanteDescansoCotoSec < 10 ? restanteDescansoCotoSec = "0" + restanteDescansoCotoSec : restanteDescansoCotoSec = restanteDescansoCotoSec
 
                 pomodoroReloj.textContent = restanteDescansoCotoMin + " : " + restanteDescansoCotoSec;
-                
+
 
                 // Si ha acabado el tiempo del descanso corto reseteamos el tiempo
                 // Y salimos del descanso
@@ -131,9 +132,6 @@ var t = window.setInterval(function () {
 
 
             }
-
-
-
 
         } else {
             // si entramos en el modo trabajo 
@@ -154,29 +152,30 @@ var t = window.setInterval(function () {
             pomodoroReloj.classList.remove("descansoLargo");
 
             // Mostramos los minutos
-            let restanteTrabajoMin =  (duracionCiclo - tiempo) / 60 ;
-            
-            // Mostramos los minutos teniendo en cuenta el formato 00
-            restanteTrabajoMin = restanteTrabajoMin < 10 ? "0"+ Math.round(restanteTrabajoMin) : Math.round(restanteTrabajoMin)
+            let restanteTrabajoMin = (duracionCiclo - tiempo) / 60;
 
-            let restanteTrabajoSec =  (duracionCiclo - tiempo) % 60;
+            // Mostramos los minutos teniendo en cuenta el formato 00
+            restanteTrabajoMin = restanteTrabajoMin < 10 ? "0" + Math.floor(restanteTrabajoMin) : Math.floor(restanteTrabajoMin)
+
+            let restanteTrabajoSec = (duracionCiclo - tiempo) % 60;
+
             // Mostramos los segundos teniendo en cuenta el formato 00
-            restanteTrabajoSec = restanteTrabajoSec < 10 ? "0" +restanteTrabajoSec : restanteTrabajoSec
-            
+            restanteTrabajoSec = restanteTrabajoSec < 10 ? "0" + restanteTrabajoSec : restanteTrabajoSec
+
             console.log(restanteTrabajoMin)
 
             console.log(restanteTrabajoSec)
 
-            pomodoroReloj.textContent = restanteTrabajoMin  + " : " + restanteTrabajoSec;
+            pomodoroReloj.textContent = restanteTrabajoMin + " : " + restanteTrabajoSec;
 
             pomodoroEstado.textContent = "¡A trabajar!";
-            
+
         }
 
         console.log("Estamos en el ciclo " + ciclo)
         console.log("Tiempo transcurrido " + tiempo)
-    } 
+    }
 
-    
+
 
 }, 1000);
