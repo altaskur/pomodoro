@@ -1,6 +1,6 @@
 # 🍅[Pomodoro]
 
-Un temporizador que nos permite gestionar nuestro tiempo de trabajo, aumentando la productividad realizando pausas cada cierto tiempo.
+Un temporizador que permite gestionar el tiempo de trabajo, aumentando la productividad y realizando pausas cada cierto tiempo.
 
 > Enfocada a practicar a gestionar las funciones ```setInterval()``` y ```clearTimeout()```.
 
