@@ -1,11 +1,32 @@
-# pomodoro
-A pomodoro clock for stream in OBS based 
+# 🍅[Pomodoro]
+
+Un temporizador que nos permite gestionar nuestro tiempo de trabajo, aumentando la productividad realizando pausas cada cierto tiempo.
+
+> Enfocada a practicar a gestionar las funciones ```setInterval()``` y ```clearTimeout()```.
+
+Al pulsar sobre la imágen, activamos la función de ```setInterval()``` realizando la cuenta atrás.
+
+al volver a pulsar sobre la imágen activamos la función ```clearTimeout()``` deteniendo la cuenta atrás.
+
+> Variables de control.
+
+```
+tiempoTrabajo  // Establece la duración del el periodo de trabajo.
+
+tiempoDescanso // Establece la duración del descanso normal o descanso corto, al final de cada ciclo.
+ 
+tiempoDescansoLargo // Establece la duración del descanso largo.
+
+activarDescansoLargo // Establece el ciclo de activación (trabajo-descanso/corto) del descanso largo.
+```
 
 
-! Special thanks to this followers
+### Agradecimientos especiales a los seguidores
 
-@bypepe77, @saura_dev 
+[@bypepe77](https://github.com/bypepe77), @saura_dev
 
-For the help!
+Que ayudaron con el código.
+
+### Otros enlaces
 
 Music by https://kronbits.itch.io/freesfx
