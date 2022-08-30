@@ -1,5 +1,8 @@
 # 🍅[Pomodoro]
 
+[<img src="https://img.shields.io/github/last-commit/altaskur/pomodoro?style=for-the-badge"></img>](https://github.com/altaskur/pomodoro/commits/main) [<img src="https://img.shields.io/github/license/altaskur/pomodoro?style=for-the-badge">](https://github.com/altaskur/pomodoro/blob/main/LICENSE)
+[<img src="https://img.shields.io/github/languages/top/altaskur/pomodoro?style=for-the-badge">](https://github.com/altaskur/pomodoro) 
+
 Un temporizador que permite gestionar el tiempo de trabajo, aumentando la productividad y realizando pausas cada cierto tiempo.
 
 > Enfocada a practicar a gestionar las funciones ```setInterval()``` y ```clearTimeout()```.
@@ -30,3 +33,10 @@ Que ayudaron con el código.
 ### Otros enlaces
 
 Music by https://kronbits.itch.io/freesfx
+
+### Socials
+
+[<img src="https://img.shields.io/github/followers/altaskur?label=GitHub&color=inactive&logo=Github&style=flat-square"></img>](https://github.com/altaskur)
+[<img src="https://img.shields.io/twitter/follow/altaskur?label=Twitter&logo=Twitter&style=flat-square"></img>](https://twitter.com/Altaskur)
+[<img src="https://img.shields.io/twitch/status/altaksur?label=Twitch - stream &logo=twitch&style=flat-square"></img>](https://www.twitch.tv/altaskur)
+
