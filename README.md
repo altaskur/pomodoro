@@ -15,13 +15,13 @@ Al volver a pulsar sobre la imagen activamos la función ```clearTimeout()``` de
 
 ## Variables de control
 
-    tiempoTrabajo  // Establece la duración del el periodo de trabajo.
+    workTime  // Establece la duración del el periodo de trabajo.
 
-    tiempoDescanso // Establece la duración del descanso normal o descanso corto, al final de cada ciclo.
- 
-    tiempoDescansoLargo // Establece la duración del descanso largo.
+    shortBreak // Establece la duración del descanso normal o descanso corto, al final de cada ciclo.
 
-    activarDescansoLargo // Establece el ciclo de activación (trabajo-descanso/corto) del descanso largo.
+    longBreak // Establece la duración del descanso largo.
+
+    breaksCycle // Establece el ciclo de activación (trabajo-descanso/corto) del descanso largo.
 
 ## Diseño
 
