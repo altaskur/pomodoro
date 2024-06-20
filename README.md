@@ -5,7 +5,9 @@
 
 ## Descripción
 
-Un temporizador que permite gestionar el tiempo de trabajo, aumentando la productividad y realizando pausas cada cierto tiempo.
+Un temporizador que permite gestionar el tiempo de trabajo, aumentando la productividad y realizando pausas cada cierto tiempo. Basado en la técnica Pomodoro.
+
+Está pensado para usarlo desde OBS Studio, para gestionar el tiempo de trabajo y descanso en directos de Twitch, a través del navegador del overlay, usando tanto archivos locales cómo la url del proyecto en GitHub Pages.
 
 > Un proyecto enfocado a practicar las funciones ```setInterval()``` y ```clearTimeout()``` de JavaScript.
 
