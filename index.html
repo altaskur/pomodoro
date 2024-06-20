@@ -2,28 +2,36 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
-    <title> Reloj Pomodoro </title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Reloj Pomodoro</title>
 </head>
 
 <body>
+  <main>
+    <button id="bellButton" type="button" class="bell-container">
+      <div class="bell-img"></div>
+    </button>
 
-    <div id="pomodoro">
+    <section id="pomodoro">
+      <div class="clock-container">
+        <div class="display">00:00</div>
+        <div class="message">¡Empezamos!</div>
+      </div>
 
-        <div id="reloj">00:00</div>
+      <div class="play-container ux-show">
+        <img src="./assets/img/Play-Button.svg" alt="" />
+      </div>
 
-        <div id="texto">¡Empezamos!</div>
+      <audio>
+        <source src="./assets/sonidos/FreeSFX/GameSFX/Events/Retro Event Acute 11.wav" type="audio/ogg" />
+      </audio>
+    </section>
+  </main>
 
-        <!-- audio descanso -->
-        <audio>
-            <source src="./assets/sonidos/FreeSFX/GameSFX/Events/Retro Event Acute 11.wav" type="audio/ogg">
-        </audio>
-
-
-        <script src="./accion.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

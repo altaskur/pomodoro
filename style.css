@@ -1,0 +1,163 @@
+@font-face {
+    font-family: "Menlo for Powerline";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Menlo for Powerline"),
+        url("/assets/Fonts/Menlo\ for\ Powerline.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: local("IBM Plex Mono"),
+        url("/assets/Fonts/IBM\ Plex\ Mono.ttf") format("truetype");
+}
+
+:root {
+    --color-1: #dfd9e2;
+    --color-2: #21537a;
+    --color-3: #885053;
+    --color-4: #ea8c55;
+    --color-5: #3f4045;
+
+    --message-font: IBM Plex Mono, monospace;
+    --message-color: var(--color-1);
+    --message-size: 15px;
+
+    --display-font: Menlo for Powerline, monospace;
+    --display-color: var(--color-1);
+    --display-size: 32px;
+}
+
+main {
+    --size: 352px;
+
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+}
+
+button.bell-container {
+    position: relative;
+    top: 16px;
+    left: 90%;
+
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+}
+
+div.bell-img {
+    --size: 24px;
+
+    width: var(--size);
+    height: var(--size);
+    min-width: var(--size);
+    min-height: var(--size);
+    max-width: var(--size);
+    max-height: var(--size);
+    background: url('assets/img/bell-on.svg') no-repeat center;
+    cursor: pointer;
+}
+
+button.bell-container.bell-off .bell-img {
+    background: url('assets/img/bell-off.svg') no-repeat center;
+}
+
+
+section#pomodoro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    max-width: 320px;
+    min-width: 320px;
+    height: 300px;
+    border-radius: 50%;
+    background-size: 350px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--color-4);
+    background: linear-gradient(110deg, var(--color-4) 0%, #BB6D40 100%);
+    border: 4px solid var(--color-1);
+    cursor: pointer;
+    animation: none;
+}
+
+section#pomodoro.work-time {
+    background-color: var(--color-2);
+    background: linear-gradient(110deg, var(--color-2) 0%, #2A71A5 100%);
+    opacity: 0.8;
+    animation: opacity-anim 1s ease-in-out both;
+
+}
+
+section#pomodoro.short-break {
+    background-color: var(--color-3);
+    background: linear-gradient(110deg, var(--color-3) 0%, #3c191b 100%);
+    opacity: 0.8;
+    animation: opacity-anim2 1s ease-in-out both;
+}
+
+section#pomodoro.long-break {
+    background-color: var(--color-5);
+    background: linear-gradient(110deg, var(--color-5) 0%, #3f4045 100%);
+    opacity: 0.8;
+    animation: opacity-anim1 1s ease-in-out both;
+}
+
+div.message {
+    font-family: var(--message-font);
+    font-size: var(--message-size);
+    color: var(--message-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+div.display {
+    font-family: var(--display-font);
+    font-size: var(--display-size);
+    color: var(--display-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+div.play-container {
+    display: none;
+}
+
+.ux-show {
+    display: block !important;
+}
+
+.ux-hide {
+    display: none !important;
+}
+
+
+@keyframes opacity-anim {
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes opacity-anim1 {
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes opacity-anim2 {
+
+    100% {
+        opacity: 1;
+    }
+
+}
