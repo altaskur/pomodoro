@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Reloj Pomodoro</title>
+  </head>
+
+  <body>
+    <nav class="menu ux-menu-hide">
+      <ul>
+        <li>
+          <button type="button" id="config">
+            configuración
+          </button>
+        </li>
+        <li>
+          <button type="button" id="about">
+            <a href="https://altaskur.github.io/" target="_blank"> Acerca de</a>
+          </button>
+        </li>
+        <li>
+          <button type="button" id="exit">
+            Salir
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <main>
+
+      <fieldset>
+        <button type="button" id="menuButton">
+          <img src="./assets/img/menu.svg" alt="menu-button">
+        </button>
+
+        <button id="bellButton" type="button">
+          <img src="./assets/img/bell-on.svg" alt="menu-button">
+        </button>
+      </fieldset>
+
+      <section id="pomodoro">
+        <div class="clock-container">
+          <div class="display">00:00</div>
+          <div class="message">¡Empezamos!</div>
+        </div>
+
+        <div class="play-container ux-show">
+          <img src="./assets/img/Play-Button.svg" alt />
+        </div>
+
+        <audio>
+          <source
+            src="./assets/sonidos/FreeSFX/GameSFX/Events/Retro Event Acute 11.wav"
+            type="audio/ogg" />
+        </audio>
+      </section>
+
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <a href="https://www.github.com/altaskur/pomodoro">
+            <img src="./assets/img/github.svg" alt="github" />
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <script src="./main.js"></script>
+  </body>
+</html>

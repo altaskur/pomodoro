@@ -1,164 +1,125 @@
+const {
+  app,
+  BrowserWindow,
+  Notification,
+  ipcMain,
+  Tray,
+  Menu,
+  shell,
+} = require("electron");
+const path = require("path");
 
-// Pomodoro texts
-const blockTexts = {
-  workTime: "Trabajando",
-  shortBreak: "Descanso corto",
-  longBreak: "Descanso largo",
-};
+function createWindow() {
+  const mainWindow = new BrowserWindow({
+    width: 400,
+    height: 480,
+    frame: false,
+    resizable: false,
+    transparent: true,
+    icon: path.join(path.join(__dirname, "/app/assets/img/pomodoro.jpeg")),
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      setAppDetails: {
+        appId: "com.pomodoro.altaskur",
+      },
+    },
+  });
 
-const blockTime = {
-  workTime: Math.round(30 * 60), // 30 minutos
-  shortBreak: Math.round(5 * 60), // 5 minutos
-  longBreak: Math.round(10 * 60), // 10 minutos
-  breaksCycle: 4,
-};
+  mainWindow.loadFile(__dirname + "/app/index.html");
 
-// blocType
-const blockType = {
-  workTime: "workTime",
-  shortBreak: "shortBreak",
-  longBreak: "longBreak",
-};
-
-//  Pomodoro Stauts
-const clockStatus = {
-  cycles: 1,
-  currentTime: 0,
-  isStopped: true,
-  actualBlock: blockType.workTime,
-  selectedBlockTime: blockTime.workTime,
-};
-
-// Pomodoro Elements
-const mainElement = document.querySelector("main");
-
-const bellElement = document.querySelector("button.bell-container");
-const containerElement = document.querySelector("section#pomodoro");
-const displayElement = containerElement.querySelector(".display");
-const messageElement = containerElement.querySelector(".message");
-const playElement = containerElement.querySelector(".play-container");
-const displayContainerElement = containerElement.querySelector(".clock-container");
-const audioElement = containerElement.querySelector("audio");
+  // mainWindow.removeMenu()
 
 
-function getNextBlock() {
-  if (clockStatus.cycles === blockTime.breaksCycle) {
-    clockStatus.cycles = 0;
-    displayContainerElement.classList.remove("short-break", "long-break", "work-time");
-    containerElement.classList.add("long-break");
-    return blockType.longBreak;
-  }
+  mainWindow.on("minimize", function (event) {
+    event.preventDefault();
+    mainWindow.hide();
+  });
 
-  if (clockStatus.actualBlock === blockType.workTime) {
-    clockStatus.cycles++;
-    displayContainerElement.classList.remove("short-break", "long-break", "work-time");
-    containerElement.classList.add("short-break");
-    return blockType.shortBreak;
-  }
+  const tray = new Tray(path.join(__dirname, "/app/assets/img/pomodoro.jpeg"));
 
-  containerElement.classList.remove("short-break", "long-break", "work-time");
-  containerElement.classList.add("work-time");
-  return blockType.workTime;
+  tray.on("double-click", () => {
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+  });
+
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Mostrar",
+      click: function () {
+        mainWindow.show();
+      },
+    },
+    {
+      label: "Ocultar",
+      click: function () {
+        mainWindow.hide();
+      },
+    },
+    {
+      label: "Silenciar/Reactivar",
+      click: function () {
+        mainWindow.webContents.send('silence');
+      },
+    },
+    {
+      label: "Parar/Reanudar",
+      click: function () {
+        mainWindow.webContents.send('stopResume');
+      },
+    },
+    { type: "separator" },
+    {
+      label: "Acerca de",
+      click: function () {
+        const notification = new Notification({
+          title: "🍅 Pomodoro",
+          body: "Una aplicación con 🤍 por Altaskur",
+        });
+        notification.show();
+        shell.openExternal("https://altaskur.github.io");
+      },
+    },
+    {
+      label: "Salir",
+      click: function () {
+        app.quit();
+      },
+    },
+  ]);
+
+  tray.setToolTip("Pomodoro");
+  tray.setContextMenu(contextMenu);
 }
 
-function changeActualBlock() {
-    clockStatus.actualBlock = getNextBlock();
-    clockStatus.selectedBlockTime = blockTime[clockStatus.actualBlock];
-    clockStatus.currentTime = 0;
-}
+app.whenReady().then(() => {
+  createWindow();
 
-function startStopSoundAlert() {
+  ipcMain.handle('minimize', () => {
+    BrowserWindow.getFocusedWindow().minimize();
+  });
 
-  if(clockStatus.actualBlock === blockType.workTime) {
-    return;
-  }
+  ipcMain.handle('showNotification', (event, message) => {
 
-  // Comprobamos el tiempo restante para activar la alarma
-  // Sonará 3 veces, una vez por cada minuto * uno de silencio.
-  const remainingTime = clockStatus.selectedBlockTime - clockStatus.currentTime;
+    const notification = new Notification({
+      title: message.title,
+      body: message.body
+    });
 
-  if (remainingTime != 0 && remainingTime <= 6) {
-    audioElement.play();
-    return;
-  }
+    notification.show();
+  });
 
-  setTimeout(() => {
-    audioElement.pause();
-  }, 300);
-  return;
-}
+  ipcMain.handle('openLink', (event, link) => {
+    shell.openExternal(link);
+  });
 
-function startTimer() {
-
-  contador = window.setInterval(() => {
-    // Start counting
-    clockStatus.currentTime++;
-
-    if ( clockStatus.currentTime >= clockStatus.selectedBlockTime) {
-      changeActualBlock();
-    };
-
-    // Mostramos el tiempo restante
-    // sacamos minutos y segundos
-    const remainingTime = clockStatus.selectedBlockTime - clockStatus.currentTime;
-
-    startStopSoundAlert();
-
-    minutos = Math.floor(remainingTime / 60);
-    segundos = remainingTime % 60;
-    displayElement.textContent =
-      (minutos < 10 ? "0" + minutos : minutos) +
-      ":" +
-      (segundos < 10 ? "0" + segundos : segundos);
-    messageElement.textContent = blockTexts[clockStatus.actualBlock];
-  }, 1000);
-}
-
-function stopTimer() {
-  window.clearTimeout(contador);
-}
-
-const muteSwitch = () => {
-  if(audioElement.muted) {
-    audioElement.muted = false;
-    bellElement.classList.remove("bell-off");
-    return;
-  }
-
-  audioElement.muted = true;
-  bellElement.classList.add("bell-off");
-};
-
-const clockTrigger = () => {
-
-  if (!clockStatus.isStopped) {
-    clockStatus.isStopped = true;
-    stopTimer();
-
-    messageElement.textContent = "Pomodoro detenido";
-    playElement.classList.remove("ux-show");
-    playElement.classList.add("ux-hide");
-    return;
-  }
-
-
-  if(clockStatus.cycles === 1) {
-    playElement.classList.remove("ux-show");
-    playElement.classList.add("ux-hide");
-  }
-
-  clockStatus.isStopped = false;
-  startTimer();
-};
-
-mainElement.addEventListener("click", (event) => {
-  const classListContain = event.target.classList.contains("bell-img");
-  if (event.target.tagName === "MAIN" || !classListContain) {
-    clockTrigger();
-    return;
-  }
-
-  muteSwitch();
-  return;
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
 });
 
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
