@@ -16,6 +16,10 @@
   "build": {
     "appId": "com.alsaskur.pomodoro",
     "win": {
+      "publisherName": "Altaskur",
+      "publish": [
+        "github"
+      ],
       "target": [
         "nsis",
         "zip"

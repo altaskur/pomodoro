@@ -72,7 +72,7 @@ function createWindow() {
       click: function () {
         const notification = new Notification({
           title: "🍅 Pomodoro",
-          body: "Una aplicación con 🤍 por Altaskur",
+          body: "Una aplicación echa con 🤍 por Altaskur",
         });
         notification.show();
         shell.openExternal("https://altaskur.github.io");
