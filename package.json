@@ -1,13 +1,36 @@
 {
-  "name": "pomodoro-electron",
+  "name": "pomodoro",
   "version": "1.0.0",
   "description": "A simple Pomodoro timer built with Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "app:dir": "electron-builder "
   },
   "author": "Altaskur",
   "devDependencies": {
-    "electron": "^32.1.2"
+    "@electron/fuses": "^1.8.0",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.0.5"
+  },
+  "build": {
+    "appId": "com.alsaskur.pomodoro",
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "deleteAppDataOnUninstall": true,
+      "installerLanguages": [
+        "es_ES"
+      ],
+      "runAfterFinish": false,
+      "createStartMenuShortcut": true
+    }
   }
 }

@@ -16,7 +16,7 @@ function createWindow() {
     frame: false,
     resizable: false,
     transparent: true,
-    icon: path.join(path.join(__dirname, "/app/assets/img/pomodoro.jpeg")),
+    icon: path.join(path.join(__dirname, "/icon.ico")),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       setAppDetails: {
